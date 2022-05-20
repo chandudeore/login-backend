@@ -15,10 +15,11 @@ app.post("/login", login);
 app.use("/users", userController);
 app.use("/products", productController);
 
-app.listen(process.env.PORT || 9999, async () => {
+const server = app.listen(process.env.PORT || 9999, async () => {
   try {
     await connect();
-    console.log("listening on port 9999");
+    const port = server.address().port;
+    console.log("listening on port", port);
   } catch (e) {
     console.error(e.message);
   }
